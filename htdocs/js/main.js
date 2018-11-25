@@ -4,18 +4,38 @@
 /* --------------------------------------------------------------------------
    Function
    -------------------------------------------------------------------------- */
-function loadPage(file, pageName) {
+function getPage(param) {
+  if(param == 'back') {
+    if (window.location.pathname == '/') {
+      loadPage('home', 'noPush');
+    } else {
+      loadPage(window.location.pathname.substr(1), 'noPush');
+    }
+  } else {
+    if (window.location.pathname == '/') {
+      loadPage('home');
+    } else {
+      loadPage(window.location.pathname.substr(1));
+    }
+  }
+}
+function loadPage(file, param) {
   $.ajax({
       method: "POST",
       url: file + '.html'
-  })
-  .done(function(data) {
-    $('main').html(data);
-    $('title').html('Experimentival | ' + pageName);
-    history.pushState({
-      id: file
-    }, pageName, file);
-  });
+    })
+    .done(function(data) {
+      $('main').html(data);
+      $('title').html('Experimentival | ' + file.charAt(0).toUpperCase() + file.slice(1));
+      $('h1').html(file.charAt(0).toUpperCase() + file.slice(1));
+      if(param != 'noPush') {
+        history.pushState({
+          id: file
+        }, file.charAt(0).toUpperCase() + file.slice(1), file);
+      }
+      colorSwitch();
+      applyFancyHovers();
+    });
 }
 /* --------------------------------------------------------------------------
    Trigger
@@ -23,15 +43,15 @@ function loadPage(file, pageName) {
 /* Link click */
 $('a.ajax').click(function(event) {
   event.preventDefault();
-  loadPage($(this).attr('href'), $(this).attr('data-pageName'));
+  loadPage($(this).attr('href'));
   $('body').removeClass('navOpen');
 });
 /* Navigate Back */
-window.addEventListener('popstate', function (event) {
-    
+window.addEventListener('popstate', function(event) {
+  getPage('back');
 }, false);
 /* Initial Page Load */
-loadPage('home', 'Home');
+getPage();
 /* ==========================================================================
    Gradient Backgrounds
    ========================================================================== */
@@ -78,12 +98,11 @@ function colorSwitch() {
 /* --------------------------------------------------------------------------
    Triggers
    -------------------------------------------------------------------------- */
-colorSwitch();
 $('.burger').click(function() {
   colorSwitch();
 });
 $('a').click(function() {
-  if (!$(this).hasClass('ext')) {
+  if (!$(this).hasClass('ext') && !$(this).hasClass('ajax')) {
     colorSwitch();
   }
 });
@@ -96,3 +115,21 @@ $('a').click(function() {
 $('.burger').click(function() {
   $('body').toggleClass('navOpen');
 });
+
+/* ==========================================================================
+   Artist hover
+   ========================================================================== */
+function applyFancyHovers() {
+  $('.artist .infos').hover(function() {
+    $($(this).find('.from')).css('display', 'inline-block');
+    $('.artist .infos').mousemove(function(event) {
+      $($(this).find('.from')).css({
+        'left': event.pageX,
+        'top': event.pageY
+      });
+    });
+  },
+  function() {
+    $($(this).find('.from')).css('display', 'none');
+  });
+}

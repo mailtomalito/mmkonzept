@@ -15,7 +15,7 @@ html {
   font-family: 'regulator-nova', sans-serif;
   font-weight: 300;
   line-height: 1.4;
-  background-color: #000;
+  background-color: $bg-color;
 }
 ::-moz-selection {
   background: #b3d4fc;
@@ -143,12 +143,8 @@ header .navContainer {
   width: 100vw;
   height: 100vh;
   padding: 0 25px 10vh 25px;
-  background-color: $bg-color;
-  // opacity: 0.5;
+  background-color: #000;
   transition: 0.3s ease;
-}
-header .navContainer nav {
-  // opacity: 1;
 }
 header .navContainer nav ul {
   margin: 0;
@@ -189,14 +185,94 @@ header .navContainer nav.smallLinks ul li a:hover {
 .navOpen header .navContainer {
   left: 0;
 }
-
-
-
+/*
+   Page Title
+*/
+h1 {
+    position: relative;
+    z-index: 1499;
+    width: 100%;
+    margin: 0;
+    font-weight: 900;
+}
+/*
+   Content Container
+*/
 main {
+  padding: 200px 25px;
   transition: 0.3s ease;
+}
+main h2 {
+  color: $t-color;
 }
 .navOpen main {
   filter: blur(10px);
+}
+/*
+   Content
+*/
+main .artist {
+  display: inline-block;
+}
+main .artist p {
+  margin: 0;
+}
+main .artist .pic {
+  border: 1px solid $t-color;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+main .artist .pic .time {
+  color: $t-color;
+  font-size: 2.5em;
+  font-weight: 400;
+  transform: translateY(-6px);
+}
+main .artist .infos .name {
+  position: relative;
+  font-size: 5em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+main .artist .infos .from {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  height: 26px;
+  font-size: 1.2em;
+  font-weight: 900;
+  color: $t-color;
+}
+/*
+   Footer
+*/
+footer {
+  margin: 200px 25px 25px 25px;
+}
+footer .logo {
+  display: inline-block;
+  width: 200px;
+  transition: 0.3s ease;
+}
+footer .logo svg {
+  width: 100%;
+}
+footer .logo svg path {
+  fill: $p-color;
+}
+footer .copyright {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0 20px;
+  line-height: 1;
+  font-size: 2.3em;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 /* ==========================================================================
    Helper classes
