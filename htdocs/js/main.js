@@ -5,6 +5,7 @@
    Function
    -------------------------------------------------------------------------- */
 function getPage(param) {
+  console.log('test')
   if(param == 'back') {
     if (window.location.pathname == '/') {
       loadPage('home', 'noPush');
@@ -22,7 +23,7 @@ function getPage(param) {
 function loadPage(file, param) {
   $.ajax({
       method: "POST",
-      url: file + '.html'
+      url: 'pages/' + file + '.html'
     })
     .done(function(data) {
       $('main').html(data);
@@ -36,6 +37,8 @@ function loadPage(file, param) {
       colorSwitch();
       applyFancyHovers();
       applyArtistStuff();
+      applyBuyButton();
+      applyVideo();
     });
 }
 /* --------------------------------------------------------------------------
@@ -93,6 +96,9 @@ function colorSwitch() {
   $('.burger .line').css('backgroundColor', pCol);
   $('body').css('color', pCol);
   $('.mainNav a').css('color', pCol);
+  $('.ticket svg path').css('fill', pCol);
+  $('.ticket svg text').css('fill', pCol);
+  $('.singleTicket .infos .buy').css('border-color', pCol);
   // Secondary Color
   $('.gradient').css('backgroundImage', 'linear-gradient(to bottom, ' + sCol + ' 0%,' + sCol + ' 10%,#000000 95%)');
 }
@@ -124,25 +130,57 @@ function randomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function applyArtistStuff() {
-  $('.artist').each(function() {
+  $('.artist').each(function(i) {
     $(this).css('margin-bottom', randomNum(50, 200));
-    $(this).css('margin-left', randomNum(0, ($('#widthOfContainers').width() - $(this).width())));
+    $(this).css('margin-left', randomNum(0, $('#widthOfContainers').width() - $(this).width()));
+    $($(this).find('.pic')).css('height', 400 + 0.2 * (500 - $($(this).find('.pic')).width()));
   });
 }
 /* ==========================================================================
    Artist hover
    ========================================================================== */
 function applyFancyHovers() {
-  $('.artist .infos').hover(function() {
-    $($(this).find('.from')).css('display', 'inline-block');
-    $('.artist .infos').mousemove(function(event) {
-      $($(this).find('.from')).css({
+  $('.artist .infos .name').hover(function() {
+    $('.from').html('From: ' + $(this).attr('data-from'));
+    $('.from').css('display', 'inline-block');
+    $('.artist .infos .name').mousemove(function(event) {
+      $('.from').css({
         'left': event.pageX,
         'top': event.pageY
       });
     });
   },
   function() {
-    $($(this).find('.from')).css('display', 'none');
+    $('.from').css('display', 'none');
   });
+}
+/* ==========================================================================
+   Buy Button
+   ========================================================================== */
+function applyBuyButton() {
+  $('.singleTicket .infos .buy').click(function() {
+    alert('money money money');
+  });
+}
+/* ==========================================================================
+   Video Mute/Unmute
+   ========================================================================== */
+function applyVideo() {
+  $('#trailerVid').click(function() {
+    if($(this).attr('muted') != 'undefined' ) {
+      $(this).removeAttr('muted');
+      console.log('muted')
+    } else {
+      $(this).attr('muted');
+    }
+  });
+  $('#trailerVid').click( function (){
+      if( $('#trailerVid').prop('muted') ) {
+        $('#trailerVid').prop('muted', false);
+        $('#videoMuted').removeClass('active');
+      } else {
+        $('#trailerVid').prop('muted', true);
+        $('#videoMuted').addClass('active');
+      }
+   });
 }
