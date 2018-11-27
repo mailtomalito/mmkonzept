@@ -5,7 +5,6 @@
    Function
    -------------------------------------------------------------------------- */
 function getPage(param) {
-  console.log('test')
   if(param == 'back') {
     if (window.location.pathname == '/') {
       loadPage('home', 'noPush');
@@ -39,6 +38,7 @@ function loadPage(file, param) {
       applyArtistStuff();
       applyBuyButton();
       applyVideo();
+      applyFromMobile();
     });
 }
 /* --------------------------------------------------------------------------
@@ -159,7 +159,12 @@ function applyFancyHovers() {
    ========================================================================== */
 function applyBuyButton() {
   $('.singleTicket .infos .buy').click(function() {
-    alert('money money money');
+    $('#moneyBurn').css('display', 'flex');
+    $('body').css('overflow', 'hidden');
+  });
+  $('#moneyBurn').click(function() {
+    $('#moneyBurn').css('display', 'none');
+    $('body').css('overflow', 'scroll');
   });
 }
 /* ==========================================================================
@@ -183,4 +188,12 @@ function applyVideo() {
         $('#videoMuted').addClass('active');
       }
    });
+}
+/* ==========================================================================
+   From Mobile
+   ========================================================================== */
+function applyFromMobile() {
+  $('.artist .name').each(function() {
+    $(this).append('<p class="fromMobile">' + $(this).attr('data-from') + '</p>');
+  });
 }

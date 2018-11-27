@@ -245,6 +245,11 @@ main .artist .infos .name {
   text-transform: uppercase;
   cursor: none;
 }
+main .artist .infos .name .fromMobile {
+  display: none;
+  font-size: 0.6em;
+  color: $t-color;
+}
 main .from {
   display: none;
   position: absolute;
@@ -283,7 +288,8 @@ main .singleTicket .ticket svg path.outline {
 }
 main .singleTicket .ticket svg text {
   font-size: 196.4332px;
-  font-family: 'RegulatorNova-Heavy';
+  font-family: 'regulator-nova', sans-serif;
+  font-weight: 900;
 }
 main .singleTicket .ticket .gradient {
   top: auto;
@@ -325,6 +331,20 @@ main .singleTicket .infos .buy {
   line-height: 65px;
   font-size: 2em;
   font-weight: 600;
+  cursor: pointer;
+}
+#moneyBurn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  transform: translateY(-50%);
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-color;
   cursor: pointer;
 }
 /*
@@ -387,11 +407,20 @@ footer .copyright {
    Touch
 */
 @media (hover: none) {
-  main .artist .infos .name::after {
-    content: attr('data-from');
-    display: inline-block;
-    color: $t-color;
-    font-size: 1.6em;
+  main .artist .infos .name .fromMobile {
+    display: block;
+  }
+  header .navContainer nav.smallLinks ul li a {
+    text-decoration: underline;
+  }
+  #trailerContainer::after {
+    content: "play";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: 900;
   }
 }
 /*

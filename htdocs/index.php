@@ -1,14 +1,29 @@
 <!doctype html>
-<html class="no-js" lang="de">
+<html lang="de">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Experimentival</title>
-  <meta name="description" content="">
+  <meta name="description" content="Get your tickets now and come to the most experimentive Festival in the world.">
+  <meta name="robots" content="follow">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff00ff">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta name="twitter:card" content="The most experimentive Festival of the world. Short @experimentival">
+  <meta name="twitter:site" content="@experimentival">
+  <meta property="og:title" content="The one and only Experimentival">
+  <meta property="og:description" content="Get your tickets now and come to the most experimentive Festival in the world.">
+  <meta property="og:image" content="img/twitter_icon.jpg">
+
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.min.css">
 
@@ -135,9 +150,9 @@
       </nav>
       <nav class="smallLinks">
         <ul>
-          <li><a href="#">Smalllink</a></li>
-          <li><a href="#">Smalllink</a></li>
-          <li><a href="#">Smalllink</a></li>
+          <li><a href="https://twitter.com/experimentival">Twitter</a></li>
+          <li><a href="https://weibo.com/experimentival">微博-随时随地发现新鲜事</a></li>
+          <li><a href="https://tiktok.com/experimentival">TikTok</a></li>
         </ul>
       </nav>
     </div>
@@ -244,6 +259,12 @@
     </div>
     <p class="copyright fl">copyright &copy; 2018<span class="gradient"></span></p>
   </footer>
+
+  <div id="moneyBurn">
+    <video width="100%" height="auto" autoplay muted loop>
+      <source src="vid/burning.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <script src="js/jquery.js"></script>
   <script src="js/main.js"></script>
