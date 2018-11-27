@@ -101,6 +101,7 @@ function colorSwitch() {
   $('.singleTicket .infos .buy').css('border-color', pCol);
   // Secondary Color
   $('.gradient').css('backgroundImage', 'linear-gradient(to bottom, ' + sCol + ' 0%,' + sCol + ' 10%,#000000 95%)');
+  $('body').append('<script>var currentCoolColor = "' + pCol + '";</script>')
 }
 /* --------------------------------------------------------------------------
    Triggers
