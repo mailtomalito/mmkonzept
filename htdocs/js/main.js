@@ -34,11 +34,12 @@ function loadPage(file, param) {
         }, file.charAt(0).toUpperCase() + file.slice(1), file);
       }
       colorSwitch();
-      applyFancyHovers();
+      applyFancyHovers('.artist .infos .name');
       applyArtistStuff();
       applyBuyButton();
       applyVideo();
       applyFromMobile();
+      loadCallback();
     });
 }
 /* --------------------------------------------------------------------------
@@ -140,11 +141,12 @@ function applyArtistStuff() {
 /* ==========================================================================
    Artist hover
    ========================================================================== */
-function applyFancyHovers() {
-  $('.artist .infos .name').hover(function() {
+function applyFancyHovers(element) {
+  $(element).hover(function() {
+    console.log('test')
     $('.from').html('From: ' + $(this).attr('data-from'));
     $('.from').css('display', 'inline-block');
-    $('.artist .infos .name').mousemove(function(event) {
+    $(element).mousemove(function(event) {
       $('.from').css({
         'left': event.pageX,
         'top': event.pageY
@@ -159,10 +161,12 @@ function applyFancyHovers() {
    Buy Button
    ========================================================================== */
 function applyBuyButton() {
-  $('.singleTicket .infos .buy').click(function() {
+  $('.singleTicket .infos .buy').click(function() {playMoneyBurn()});
+  $('.moneymoneymoney').click(function() {playMoneyBurn()});
+  function playMoneyBurn() {
     $('#moneyBurn').css('display', 'flex');
     $('body').css('overflow', 'hidden');
-  });
+  }
   $('#moneyBurn').click(function() {
     $('#moneyBurn').css('display', 'none');
     $('body').css('overflow', 'scroll');
@@ -175,7 +179,6 @@ function applyVideo() {
   $('#trailerVid').click(function() {
     if($(this).attr('muted') != 'undefined' ) {
       $(this).removeAttr('muted');
-      console.log('muted')
     } else {
       $(this).attr('muted');
     }
@@ -197,4 +200,77 @@ function applyFromMobile() {
   $('.artist .name').each(function() {
     $(this).append('<p class="fromMobile">' + $(this).attr('data-from') + '</p>');
   });
+  $('.pic .name').each(function() {
+    $(this).append('<p class="fromMobile">' + $(this).attr('data-from') + '</p>');
+  });
 }
+/* ==========================================================================
+   The Socialwall
+   ========================================================================== */
+function howManyColsShouldThereBe() {
+ if($(window).width() <= 425) {
+   return 1;
+ } else if($(window).width() <= 850) {
+   return 2;
+ } else if($(window).width() <= 1000) {
+   return 3;
+ } else if($(window).width() <= 1300) {
+   return 4;
+ } else {
+   return 5;
+ }
+}
+var currentCols = howManyColsShouldThereBe();
+function loadCallback() {
+  sortToCols(currentCols);
+}
+$(window).resize(function() {
+  if(howManyColsShouldThereBe() != currentCols) {
+    currentCols = howManyColsShouldThereBe();
+    sortToCols(currentCols);
+  }
+});
+function sortToCols(anzahl) {
+  pics = $('.theWall .pic');
+  col_ = {};
+  $('.theWall').empty();
+  for(var i = 1; i <= anzahl; i++) {
+    if(i%2 == 0) {
+      $('.theWall').append('<div class="col fl col_'+i+'" data-type="parallax" data-depth="'+(i*6)+'"></div>');
+    } else {
+      $('.theWall').append('<div class="col fl col_'+i+'" data-type="parallax" data-depth="'+(i*4)+'"></div>');
+    }
+  }
+  $('.theWall .col').css('width', 'calc('+(100/anzahl)+'% - 20px)');
+  c = 1;
+  for(var i = 0; i <= pics.length; i++) {
+    $('.col_'+c).append(pics[i]);
+    if(c < anzahl) {
+      c++;
+    } else {
+      c = 1;
+    }
+  }
+  applyFancyHovers('.theWall .name');
+}
+(function() {
+  window.addEventListener('scroll', function(event) {
+    var depth, i, layer, layers, len, movement, topDistance, translate3d;
+    topDistance = this.pageYOffset;
+    layers = document.querySelectorAll('[data-type=\'parallax\']');
+    for (i = 0, len = layers.length; i < len; i++) {
+      layer = layers[i];
+      depth = layer.getAttribute('data-depth');
+      movement = -(topDistance * (depth / 100));
+      translate3d = 'translate3d(0, ' + movement + 'px, 3px)';
+      layer.style['-webkit-transform'] = translate3d;
+      layer.style['-moz-transform'] = translate3d;
+      layer.style['-ms-transform'] = translate3d;
+      layer.style['-o-transform'] = translate3d;
+      layer.style.transform = translate3d;
+      $(".card").click(function() {
+        return;
+      });
+    }
+  });
+}.call(this));

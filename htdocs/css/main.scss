@@ -180,7 +180,7 @@ header .navContainer nav ul li a {
   text-decoration: none;
 }
 header .navContainer nav.mainNav ul li a {
-  font-size: 6em;
+  font-size: 5em;
   font-weight: 900;
   color: $p-color;
   text-transform: uppercase;
@@ -245,9 +245,13 @@ main .artist .infos .name {
   text-transform: uppercase;
   cursor: none;
 }
-main .artist .infos .name .fromMobile {
+.name .fromMobile {
   display: none;
-  font-size: 0.6em;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
   color: $t-color;
 }
 main .from {
@@ -378,6 +382,147 @@ main .singleTicket .infos .buy {
   height: 700px;
 }
 /*
+  Socialwall page
+*/
+.picUpload {
+  margin: 0 auto;
+  width: 400px;
+  text-align: center;
+}
+.picUpload .fileBtn {
+  margin-bottom: 60px;
+  display: inline-block;
+  height: 250px;
+  width: 250px;
+  border: 1px solid $t-color;
+  color: $t-color;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 250px;
+  cursor: pointer;
+}
+.picUpload #file {
+  display: none;
+}
+.picUpload input[type=text] {
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $t-color;
+  background: none;
+  color: $t-color;
+  padding: 5px 0;
+  outline: none;
+}
+.picUpload input[type=text]::placeholder {
+  color: $t-color;
+}
+.picUpload input:nth-last-of-type(3) {
+  margin-bottom: 20px;
+}
+.picUpload label.agbs {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid $t-color;
+  background: none;
+  cursor: pointer;
+}
+.picUpload #agb {
+  display: none;
+}
+.picUpload #agb:checked ~ label.agbs::after {
+  content: "✓";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $t-color;
+}
+.picUpload p.agbs {
+  margin: 0;
+  display: inline-block;
+  color: $t-color;
+  transform: translateY(-4px);
+}
+.picUpload p.agbs a {
+  color: $t-color;
+}
+.picUpload .submit {
+  margin-top: 30px;
+  display: inline-block;
+  position: relative;
+}
+.picUpload .submit input[type=submit] {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 2em;
+  font-weight: 900;
+  outline: none;
+  cursor: pointer;
+}
+.theWallTitle {
+  position: relative;
+  margin-bottom: 200px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 11em;
+  text-align: center;
+  z-index: 20;
+}
+@media only screen and (max-width: 1566px) { .theWallTitle { font-size:10em; }}
+@media only screen and (max-width: 1427px) { .theWallTitle { font-size:9em; }}
+@media only screen and (max-width: 1390px) { .theWallTitle { font-size:8em; }}
+@media only screen and (max-width: 1155px) { .theWallTitle { font-size:7em; }}
+@media only screen and (max-width: 1015px) { .theWallTitle { font-size:6em; }}
+@media only screen and (max-width: 880px) { .theWallTitle { font-size:5em; }}
+@media only screen and (max-width: 750px) { .theWallTitle { font-size:4em; }}
+@media only screen and (max-width: 605px) { .theWallTitle { font-size:3em; }}
+@media only screen and (max-width: 470px) { .theWallTitle { font-size:2em; }}
+.theWall {
+  width: 100%;
+}
+.theWall .col {
+  display: inline-block;
+  margin-right: 25px;
+}
+.theWall .col:nth-last-child(1) {
+  margin-right: 0;
+}
+.theWall .col .pic {
+  margin-bottom: 25px;
+}
+.theWall .col .pic img,
+.theWall .col .pic video {
+  width: 100%;
+  border: 1px solid $t-color;
+}
+.theWall .col .pic .name {
+  position: relative;
+}
+.theWall .col .pic .name .title {
+  margin: 0;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+/*
+  Thank you Page
+*/
+.thx {
+  text-align: center;
+}
+.thx a {
+  color: $t-color;
+}
+/*
    Footer
 */
 footer {
@@ -410,7 +555,7 @@ footer .copyright {
    Touch
 */
 @media (hover: none) {
-  main .artist .infos .name .fromMobile {
+  .name .fromMobile {
     display: block;
   }
   header .navContainer nav.smallLinks ul li a {
@@ -427,9 +572,30 @@ footer .copyright {
   }
 }
 /*
+  Laptop
+*/
+@media only screen and (max-width: 1024px) {
+  /*
+    Header
+  */
+  header .navContainer nav.smallLinks ul {
+    text-align: right;
+  }
+  header .navContainer nav.smallLinks ul li {
+    display: block;
+    margin-right: 0;
+  }
+}
+/*
    Tablet
 */
 @media only screen and (max-width: 768px) {
+  /*
+    Header
+  */
+  header .navContainer nav.mainNav ul li a {
+    font-size: 4em;
+  }
   /*
      Ticket Page
   */
@@ -457,6 +623,12 @@ footer .copyright {
     height: 300px;
   }
   /*
+    Socialwall
+  */
+  .theWallTitle {
+    margin-bottom: 100px;
+  }
+  /*
      Footer
   */
   footer .fl {
@@ -481,16 +653,16 @@ footer .copyright {
     width: 200px;
   }
   header .burger .line {
-    width: 100px;
+    width: 60px;
   }
   .navOpen header .burger .line.cross {
-    width: 102px;
+    width: 62px;
   }
   .navOpen header .burger .line.cross:nth-of-type(2) {
-    transform: rotate(-18deg);
+    transform: rotate(-30deg);
   }
   .navOpen header .burger .line.cross:nth-of-type(3) {
-    transform: rotate(18deg);
+    transform: rotate(30deg);
   }
   header .navContainer {
     flex-direction: column;
@@ -504,8 +676,11 @@ footer .copyright {
   header .navContainer nav.mainNav ul {
     text-align: center;
   }
+  header .navContainer nav.smallLinks ul {
+    text-align: center;
+  }
   header .navContainer nav.mainNav ul li a {
-    font-size: 4em;
+    font-size: 3.5em;
   }
   /*
      Home Page
@@ -529,10 +704,30 @@ footer .copyright {
     width: 100%;
   }
   /*
+    Socialwall page
+  */
+  .picUpload {
+    width: 100%;
+  }
+  .theWallTitle {
+    margin-bottom: 50px;
+  }
+  .theWall .col {
+    width: 100% !important;
+  }
+  /*
      Footer
   */
   footer .copyright {
     font-size: 1.6em;
+  }
+}
+@media only screen and (max-width: 375px) {
+  /*
+    Header
+  */
+  header .navContainer nav.mainNav ul li a {
+    font-size: 3em;
   }
 }
 /* ==========================================================================

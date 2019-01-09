@@ -139,13 +139,14 @@
       <span class="line cross"></span>
       <span class="line"></span>
     </div>
-    <h1 class="fl">Error</h1>
+    <h1 class="fl">Loading or Error</h1>
     <div class="navContainer">
       <nav class="mainNav">
         <ul>
           <li><a href="home" class="ajax g-bg">home</a></li>
           <li><a href="tickets" class="ajax g-bg">tickets</a></li>
           <li><a href="info" class="ajax g-bg">info</a></li>
+          <li><a href="socialwall" class="ajax g-bg">socialwall</a></li>
         </ul>
       </nav>
       <nav class="smallLinks">
@@ -157,7 +158,7 @@
       </nav>
     </div>
   </header>
-  <main>Something went wrong, please try again later!</main>
+  <main>It's still loading or something went wrong, please try again later!</main>
   <footer class="clearfix">
     <div class="logo fl">
       <a href="home" class="ajax">
